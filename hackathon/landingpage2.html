@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carbon Emission Tracker - Home</title>
+  <meta name="description" content="Track your carbon footprint and help save the planet! 🌍 Calculate emissions, view history, and start a sustainable life." />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66bb6a, #42a5f5);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      flex-wrap: nowrap;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #a5d6a7;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: #c8e6c9;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background-color: #2e7d32;
+    }
+
+    .lang-select {
+      margin-left: 10px;
+    }
+
+    .lang-select select {
+      padding: 6px 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.3);
+      color: white;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .btn-small {
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-small:hover {
+      opacity: 0.85;
+    }
+
+    .hero {
+      padding: 100px 20px 80px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 1s ease-in-out;
+      position: relative;
+      flex-grow: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      line-height: 1.5;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .btn-main {
+      display: inline-block;
+      background-color: #1b5e20;
+      color: white;
+      text-decoration: none;
+      padding: 16px 32px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-main:hover {
+      background-color: #2e7d32;
+    }
+
+    .section {
+      background-color: rgba(0, 0, 0, 0.15);
+      padding: 50px 20px;
+      margin-top: 20px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #e0f7fa;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 15px;
+      line-height: 1.6;
+    }
+
+    .footer-buttons {
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #004d40;
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 40px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #00695c;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px;
+      color: #c8e6c9;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: auto;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p, .section p {
+        font-size: 1rem;
+      }
+
+      .btn-main, .btn {
+        font-size: 1rem;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Eco Plus</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="hackathon.html">Carbon Calculator</a>
+    <a href="history.html">History</a>
+  </nav>
+
+  <div class="header-right">
+    <div class="lang-select">
+      <select onchange="changeLang(this.value)" id="languageDropdown" aria-label="Select Language">
+        <option value="en">🌐 English</option>
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="gu">🇮🇳 ગુજરાતી</option>
+      </select>
+    </div>
+
+    <a href="login.html" class="btn-small" style="background-color: #388e3c;">Login</a>
+    <a href="signup.html" class="btn-small" style="background-color: #1e88e5;">Sign Up</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h1 id="title">Welcome to Carbon Emission Tracker </h1>
+  <p id="intro">Discover your environmental impact. Use our simple tool to calculate your daily carbon footprint and take steps to live more sustainably.</p>
+  <a href="carbon-calculator.html" class="btn-main" id="startBtn">Get Started</a>
+</div>
+
+<!-- Sections -->
+<div class="section">
+  <h2 id="whatTitle"> What is Carbon Emission?</h2>
+  <p id="whatText">Carbon emissions refer to the release of carbon dioxide (CO₂) into the atmosphere, largely from burning fossil fuels for energy, transport, and other human activities.</p>
+</div>
+
+<div class="section">
+  <h2 id="whyTitle">💡 Why Should We Track It?</h2>
+  <p id="whyText">Tracking carbon emissions makes you aware of your lifestyle impact. It helps you make informed decisions, reduce waste, and contribute to a more sustainable future.</p>
+</div>
+
+<div class="section">
+  <h2 id="impactTitle">🌍 Impact on the World</h2>
+  <p id="impactText">Excessive carbon emissions are a leading cause of global warming, rising sea levels, and extreme weather. Every small change we make contributes to a healthier planet.</p>
+</div>
+
+<!-- Buttons -->
+
+
+<!-- FOOTER -->
+<footer>
+  © 2025 Carbon Emission Tracker. Created with 💚 for sustainability.
+</footer>
+
+<!-- JS -->
+<script>
+  const translations = {
+    hi: {
+      title: "कार्बन उत्सर्जन ट्रैकर में आपका स्वागत है 🌱",
+      intro: "अपने पर्यावरणीय प्रभाव को जानें। हमारे सरल टूल से अपना दैनिक कार्बन फुटप्रिंट मापें और सतत जीवन की दिशा में कदम बढ़ाएं।",
+      startBtn: "शुरू करें",
+      whatTitle: "🌿 कार्बन उत्सर्जन क्या है?",
+      whatText: "कार्बन उत्सर्जन का मतलब है CO₂ का वायुमंडल में उत्सर्जन, जो मुख्यतः जीवाश्म ईंधन के जलने से होता है।",
+      whyTitle: "💡 हमें इसे ट्रैक क्यों करना चाहिए?",
+      whyText: "यह आपकी जीवनशैली के प्रभाव को समझने में मदद करता है और सतत भविष्य के लिए प्रोत्साहित करता है।",
+      impactTitle: "🌍 विश्व पर प्रभाव",
+      impactText: "अत्यधिक कार्बन उत्सर्जन ग्लोबल वार्मिंग, समुद्र स्तर में वृद्धि और चरम मौसम का कारण बनता है।",
+      calcBtn: "🧮 कैलकुलेटर का उपयोग करें",
+      historyBtn: "📜 इतिहास देखें"
+    },
+    gu: {
+      title: "કાર્બન ઉત્સર્જન ટ્રેકરમાં તમારું સ્વાગત છે 🌱",
+      intro: "તમારા પર્યાવરણીય અસર વિશે જાણો. અમારી સરળ સાધન દ્વારા તમારું દૈનિક કાર્બન ફૂટપ્રિન્ટ માપો અને વધુ ટકાઉ જીવન તરફ પગલાં લો.",
+      startBtn: "શરૂ કરો",
+      whatTitle: "🌿 કાર્બન ઉત્સર્જન શું છે?",
+      whatText: "કાર્બન ઉત્સર્જન એટલે કે કાર્બન ડાયોકસાઇડ (CO₂) નું વાતાવરણમાં છોડવું, ખાસ કરીને ઇંધણ બળવાથી.",
+      whyTitle: "💡 આપણે તેને ટ્રેક કેમ કરવું જોઈએ?",
+      whyText: "કાર્બન ઉત્સર્જન ટ્રેક કરવાથી તમારા જીવનશૈલીના અસર અંગે જાગૃતતા મળે છે અને ટકાઉ ભવિષ્ય માટે મદદ મળે છે.",
+      impactTitle: "🌍 વિશ્વ પર અસર",
+      impactText: "અતિશય કાર્બન ઉત્સર્જન ગ્લોબલ વોર્મિંગ, દરિયાઈ સપાટીમાં વધારો અને અસામાન્ય હવામાન માટે જવાબદાર છે.",
+      calcBtn: "🧮 કેલ્ક્યુલેટર ઉપયોગ કરો",
+      historyBtn: "📜 ઈતિહાસ જુઓ"
+    }
+  };
+
+  function changeLang(lang) {
+    if (lang === "en") {
+      localStorage.setItem("selectedLang", "en");
+      location.reload();
+      return;
+    }
+    localStorage.setItem("selectedLang", lang);
+    const t = translations[lang];
+    for (const key in t) {
+      const el = document.getElementById(key);
+      if (el) el.textContent = t[key];
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("selectedLang") || "en";
+    if (savedLang !== "en") {
+      document.getElementById("languageDropdown").value = savedLang;
+      changeLang(savedLang);
+    }
+
+    const hero = document.getElementById('hero');
+    const bgImages = [
+      'solar panels.jpg',
+      'air pollution.jpg',
+      'planting tree.jpg'
+    ];
+    let index = 0;
+
+    function rotateHeroBackground() {
+      hero.style.backgroundImage = `url('${bgImages[index]}')`;
+      index = (index + 1) % bgImages.length;
+    }
+
+    rotateHeroBackground();
+    setInterval(rotateHeroBackground, 10000);
+  });
+</script>
+
+</body>
+</html>

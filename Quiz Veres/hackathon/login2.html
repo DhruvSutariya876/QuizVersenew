@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StackIt - Login</title>
+  
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+        <img src="Stacks-removebg-preview.png" alt="Stackit logo">
+        StackIt
+    </div>
+    <nav>
+      <a href="#">Products</a>
+      <a href="#">About</a>
+      <a href="#">For Teams</a>
+      <div class="auth-buttons">
+        <button class="login-btn">Log in</button>
+        <button class="signup-btn">Sign up</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="header">
+      <span class="logo">StackIt</span>
+    </div>
+    <form id="loginForm" autocomplete="off">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter your password" required>
+      </div>
+      <div class="links">
+        <a href="#">Forgot password?</a>
+        <a href="#">Sign up</a>
+      </div>
+      <button class="submit-btn" type="submit">Login</button>
+      <div class="message" id="message"></div>
+    </form>
+    <div class="footer">
+      &copy; 2025 StackIt &mdash; Empowering Collaborative Learning
+    </div>
+  </div>
+  <script>
+    document.getElementById('loginForm').onsubmit = function(e) {
+      e.preventDefault();
+      var email = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var messageDiv = document.getElementById('message');
+
+      if (!email || !password) {
+        messageDiv.textContent = "Please enter both email and password.";
+        return;
+      }
+
+      if (email === "user@example.com" && password === "password123") {
+        messageDiv.style.color = "#388e3c";
+        messageDiv.textContent = "Login successful! Redirecting...";
+        setTimeout(function() {
+          window.location.href = "home.html"; // Replace with your dashboard URL
+        }, 1200);
+      } else {
+        messageDiv.style.color = "#d32f2f";
+        messageDiv.textContent = "Invalid email or password.";
+      }
+    };
+  </script>
+</body>
+</html>

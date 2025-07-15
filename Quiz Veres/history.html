@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QuizVerse - Quiz History</title>
+<style>
+  h1{
+    text-align: center;
+    color:cadetblue;
+  }
+
+  p{
+    font-size: 1rem;
+  }
+
+  a{
+    color:coral;
+    text-decoration: none;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.3s ease;
+  }
+
+  a:hover{
+    color:chocolate;
+    text-decoration: underline;
+  }
+table{
+  width: 100%;
+  border-radius: 12px;
+  border-collapse: collapse ;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+th,td{
+padding: 10px;
+text-align: center;
+margin-bottom: 20px;
+font-size: 1rem;
+}
+th{
+  background-color: cadetblue;
+}
+tr{
+  border-radius: 50px;
+  background-color:antiquewhite;
+}
+td:nth-child(6) {
+  font-weight: 700;
+  color: #2e7d32; /* green */
+}
+
+</style>
+</head>
+<body>
+  <h1>Quiz Attempt History</h1>
+  <p><strong>User:</strong> Dhruv</p>
+  <p><a href="home.html">Back to Dashboard</a></p>
+
+  <hr>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    
+      <tr>
+        <th>#</th>
+        <th>Quiz Title</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>View</th>
+      </tr>
+    
+      <tr>
+        <td>1</td>
+        <td>General Knowledge</td>
+        <td>GK</td>
+        <td>July 5, 2025</td>
+        <td>8 / 10</td>
+        <td>Passed</td>
+        <td><a href="result.html">View</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Math Basics</td>
+        <td>Math</td>
+        <td>July 2, 2025</td>
+        <td>7 / 10</td>
+        <td>Passed</td>
+        <td><a href="result.html">View</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Science Quiz</td>
+        <td>Science</td>
+        <td>June 30, 2025</td>
+        <td>5 / 10</td>
+        <td>Passed</td>
+        <td><a href="result.html">View</a></td>
+      </tr>
+
+      <tr>
+  </table>
+</body>
+</html>

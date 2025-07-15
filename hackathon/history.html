@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emission History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fdf4;
+      margin: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #66bb6a;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    tr:hover {
+      background-color: #f1f8e9;
+    }
+    button {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #9a0007;
+    }
+    #clearAllBtn {
+      margin: 20px 0;
+      background-color: #1976d2;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+    #clearAllBtn:hover {
+      background-color: #004ba0;
+    }
+    .no-history {
+      text-align: center;
+      font-size: 1.2em;
+      margin-top: 50px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Carbon Emission History</h1>
+
+  <button id="clearAllBtn">Clear All History</button>
+
+  <table id="historyTable">
+    <thead>
+      <tr>
+        <th>Date & Time</th>
+        <th>Total Emission (kg CO₂)</th>
+        <th>Details</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="historyBody">
+      <!-- Records will appear here -->
+    </tbody>
+  </table>
+
+  <p class="no-history" id="noHistoryMsg" style="display:none;">No history records found.</p>
+
+<script>
+  const STORAGE_KEY = 'carbonEmissionHistory';
+
+  function loadHistory() {
+    const historyJSON = localStorage.getItem(STORAGE_KEY);
+    const history = historyJSON ? JSON.parse(historyJSON) : [];
+
+    const tbody = document.getElementById('historyBody');
+    const noHistoryMsg = document.getElementById('noHistoryMsg');
+    tbody.innerHTML = '';
+
+    if (history.length === 0) {
+      noHistoryMsg.style.display = 'block';
+      document.getElementById('historyTable').style.display = 'none';
+      return;
+    } else {
+      noHistoryMsg.style.display = 'none';
+      document.getElementById('historyTable').style.display = 'table';
+    }
+
+    history.forEach((entry, index) => {
+      const tr = document.createElement('tr');
+
+      const dateTd = document.createElement('td');
+      dateTd.textContent = new Date(entry.date).toLocaleString();
+      tr.appendChild(dateTd);
+
+      const totalTd = document.createElement('td');
+      totalTd.textContent = entry.totalEmission + ' kg CO₂';
+      tr.appendChild(totalTd);
+
+      const detailsTd = document.createElement('td');
+      // Show a summary of categories emission
+      let detailsText = '';
+      for (const [key, value] of Object.entries(entry.details)) {
+        detailsText += `${key}: ${value} kg, `;
+      }
+      detailsTd.textContent = detailsText.slice(0, -2);
+      tr.appendChild(detailsTd);
+
+      const deleteTd = document.createElement('td');
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Delete';
+      delBtn.onclick = () => deleteEntry(index);
+      deleteTd.appendChild(delBtn);
+      tr.appendChild(deleteTd);
+
+      tbody.appendChild(tr);
+    });
+  }
+
+  function deleteEntry(index) {
+    const historyJSON = localStorage.getItem(STORAGE_KEY);
+    if (!historyJSON) return;
+    let history = JSON.parse(historyJSON);
+    history.splice(index, 1);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    loadHistory();
+  }
+
+  document.getElementById('clearAllBtn').addEventListener('click', () => {
+    if (confirm('Are you sure you want to clear all history?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      loadHistory();
+    }
+  });
+
+  // Load history on page load
+  loadHistory();
+</script>
+
+</body>
+</html>

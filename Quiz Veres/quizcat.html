@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Categories - QuizVerse</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(48, 45, 45, 0.6)),
+        url('quiz1.avif') no-repeat center center / cover;
+      color: #e0f7fa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #3b82f6;
+    }
+
+    p {
+      color: #e0f7fa;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 700px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    th, td {
+      padding: 18px;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+td{
+  color: #000;
+}
+    th {
+      background: linear-gradient(to right, #4f46e5, #3b82f6);
+      color: white;
+      font-size: 1.3rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f0f8ff;
+    }
+
+    tr:hover {
+      background-color: #e6f7ff;
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #4f46e5;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #00f2fe;
+      text-shadow: 0 0 5px #00f2fe;
+    }
+
+    .back {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border-radius: 10px;
+      font-weight: bold;
+      color: #222;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+      transition: 0.3s ease;
+    }
+
+    .back:hover {
+      background: linear-gradient(to left, #4facfe, #00f2fe);
+      box-shadow: 0 0 14px #00f2fe;
+      color: #000;
+    }
+
+    @media (max-width: 480px) {
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📚 Select a Quiz Category</h1>
+  <p>Choose a topic and dive into exciting quizzes!</p>
+
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Start</th>
+    </tr>
+    <tr>
+      <td>🧪 Science</td>
+      <td><a href="quizlist.html?category=science">View Quizzes</a></td>
+    </tr>
+    <tr>
+      <td>🏛️ History</td>
+      <td><a href="quizlist.html?category=history">View Quizzes</a></td>
+    </tr>
+    <tr>
+      <td>⚽ Sports</td>
+      <td><a href="quizlist.html?category=sports">View Quizzes</a></td>
+    </tr>
+    <tr>
+      <td>🎬 Movies</td>
+      <td><a href="quizlist.html?category=movies">View Quizzes</a></td>
+    </tr>
+    <tr>
+      <td>💻 Technology</td>
+      <td><a href="quizlist.html?category=technology">View Quizzes</a></td>
+    </tr>
+  </table>
+
+  <a href="home.html" class="back">← Back to Home</a>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carbon Emission Tracker - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e8f5e9, #a5d6a7);
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #2e7d32;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .lang-select select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .intro {
+      max-width: 900px;
+      margin: 40px 20px 20px;
+      color: #1b5e20;
+    }
+
+    .intro h2 {
+      margin-top: 0;
+      color: #2e7d32;
+      font-size: 1.6rem;
+    }
+
+    .intro p {
+      font-size: 1.05rem;
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      padding: 40px 30px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .card h2 {
+      color: #1b5e20;
+      margin-bottom: 20px;
+    }
+
+    .start-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 35px;
+      font-size: 1.2rem;
+      background-color: #43a047;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .start-button:hover {
+      background-color: #2e7d32;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.3rem;
+      }
+
+      .intro h2 {
+        font-size: 1.3rem;
+      }
+
+      .start-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="mainHeading">🌿 Carbon Emission Tracker</h1>
+    <div class="lang-select">
+      <select id="languageSelect" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="gu">ગુજરાતી</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="bn">বাংলা</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="intro">
+    <h2 id="aboutHeading">What is Carbon Emission?</h2>
+    <p id="aboutText">
+      Carbon emissions refer to the release of carbon dioxide (CO₂) into the atmosphere,
+      primarily from human activities such as transportation, electricity use, heating, and food habits.
+    </p>
+    <h2>Why is it important?</h2>
+    <p>
+      High carbon emissions lead to global warming, climate change, rising sea levels, and more natural disasters.
+    </p>
+    <h2>Why track it?</h2>
+    <p>
+      Tracking your carbon footprint helps you take control of your impact on the planet
+      and take steps to reduce it effectively.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="cta">Start Your Journey to a Greener Future</h2>
+    <a id="startBtn" href="carbon-calculator.html" class="start-button">Get Started</a>
+  </div>
+
+  <script>
+    const translations = {
+      hi: {
+        heading: "कार्बन उत्सर्जन ट्रैकर",
+        about: `कार्बन उत्सर्जन वह CO₂ है जो मानव गतिविधियों जैसे परिवहन, बिजली और भोजन से वातावरण में निकलती है।`,
+        cta: "हरे भविष्य की ओर कदम बढ़ाएं",
+        btn: "शुरू करें"
+      },
+      gu: {
+        heading: "કાર્બન ઉત્સર્જન ટ્રેકર",
+        about: `કાર્બન ઉત્સર્જન એ CO₂ છે જે માનવીય પ્રવૃત્તિઓ દ્વારા હવામાં જાય છે.`,
+        cta: "હરિયાળી ભવિષ્ય માટે એક પગલું",
+        btn: "શરૂ કરો"
+      },
+      // Add other languages as needed
+    };
+
+    function changeLanguage() {
+      const lang = document.getElementById("languageSelect").value;
+      if (lang === "en") {
+        document.getElementById("mainHeading").textContent = "🌿 Carbon Emission Tracker";
+        document.getElementById("aboutHeading").textContent = "What is Carbon Emission?";
+        document.getElementById("aboutText").textContent =
+          "Carbon emissions refer to the release of carbon dioxide (CO₂) into the atmosphere, primarily from human activities such as transportation, electricity use, heating, and food habits.";
+        document.getElementById("cta").textContent = "Start Your Journey to a Greener Future";
+        document.getElementById("startBtn").textContent = "Get Started";
+      } else if (translations[lang]) {
+        const t = translations[lang];
+        document.getElementById("mainHeading").textContent = "🌿 " + t.heading;
+        document.getElementById("aboutHeading").textContent = t.heading;
+        document.getElementById("aboutText").textContent = t.about;
+        document.getElementById("cta").textContent = t.cta;
+        document.getElementById("startBtn").textContent = t.btn;
+      }
+    }
+  </script>
+
+</body>
+</html>

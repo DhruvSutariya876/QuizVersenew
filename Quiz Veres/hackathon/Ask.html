@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StackIt - Ask Question</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+ <link rel="stylesheet" href="ask.css">
+
+</head>
+<body>
+  
+
+<header>
+        <div class="logo">
+            <img src="Stacks-removebg-preview.png" alt="Stackit logo">
+            StackIt
+        </div>
+        <nav>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="#">For Teams</a>
+            <div class="notification">
+                <span class="notification-bell">🔔</span>
+                <span class="notification-dot"></span>
+            </div>
+            <div class="auth-section">
+                <button class="login-btn" id="openLoginModal">Log in</button>
+                <button class="signup-btn">Sign up</button>
+            </div>
+        </nav>
+    </header>
+     <div class="container">
+    <form id="askForm" autocomplete="off">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" type="text" placeholder="e.g. How to use React useEffect?" required>
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <div id="toolbar">
+        </div>
+        <div id="editor"></div>
+      </div>
+      <div>
+        <label for="tags">Tags</label>
+        <input id="tags" type="text" placeholder="e.g. React, useEffect, hooks" required>
+      </div>
+      <button class="submit-btn" type="submit">Submit</button>
+    </form>
+    <div class="footer">
+      &copy; 2025 StackIt &mdash; Empowering Collaborative Learning
+    </div>
+  </div>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+    var quill = new Quill('#editor', {
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image'],
+          [{ 'align': [] }]
+        ]
+      },
+      placeholder: 'Describe your question in detail...',
+      theme: 'snow'
+    });
+
+    var toolbar = document.querySelector('.ql-toolbar');
+    document.getElementById('toolbar').appendChild(toolbar);
+
+    document.getElementById('askForm').onsubmit = function(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const tags = document.getElementById('tags').value.trim();
+      const description = quill.root.innerHTML.trim(); // HTML content
+
+      alert(
+        "Title: " + title + "\n\n" +
+        "Description (HTML):\n" + description + "\n\n" +
+        "Tags: " + tags
+      );
+    };
+  </script>
+</body>
+</html>

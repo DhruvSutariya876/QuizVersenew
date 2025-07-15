@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eco Plus - Carbon Emission Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* === GLOBAL STYLES === */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f2f1, #a5d6a7);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1b5e20;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .header-left {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .header-right a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .header-right a:hover {
+      color: #a5d6a7;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    /* === CALCULATOR CONTAINER === */
+    .calculator-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 25px;
+      background-color: #2e7d32;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1b4d1a;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #1b5e20;
+      text-align: center;
+    }
+
+    #chartContainer {
+      margin-top: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    footer {
+      background-color: #1b5e20;
+      padding: 18px 20px;
+      color: #c8e6c9;
+      width: 100%;
+      font-size: 0.95rem;
+      text-align: center;
+      margin-top: 50px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left"> Eco Plus</div>
+    <div class="header-right">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="history.html">History</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Carbon Emission Calculator</h1>
+
+    <div class="calculator-container">
+      <label for="transportMode">Transport Mode:</label>
+      <select id="transportMode">
+        <option value="0">None</option>
+        <option value="0.12">Car (petrol) - 0.12 kg CO₂/km</option>
+        <option value="0.06">Bus - 0.06 kg CO₂/km</option>
+        <option value="0.01">Bike/Walk - 0.01 kg CO₂/km</option>
+        <option value="0.25">Flight (short haul) - 0.25 kg CO₂/km</option>
+      </select>
+
+      <label for="distance">Distance Traveled (km):</label>
+      <input type="number" id="distance" placeholder="e.g. 10" min="0" />
+
+      <label for="electricity">Electricity Usage (kWh):</label>
+      <input type="number" id="electricity" placeholder="e.g. 5" min="0" />
+
+      <label for="heating">Heating/Cooling Energy Usage (kWh):</label>
+      <input type="number" id="heating" placeholder="e.g. 10" min="0" />
+
+      <label for="waste">Waste Generated (kg):</label>
+      <input type="number" id="waste" placeholder="e.g. 2" min="0" />
+
+      <label for="diet">Diet Type:</label>
+      <select id="diet">
+        <option value="0">Vegan</option>
+        <option value="2">Vegetarian</option>
+        <option value="5">Non-Vegetarian</option>
+      </select>
+
+      <label for="recycling">Recycling Habits:</label>
+      <select id="recycling">
+        <option value="0">None</option>
+        <option value="0.1">Sometimes (10% reduction)</option>
+        <option value="0.25">Regular (25% reduction)</option>
+        <option value="0.5">Excellent (50% reduction)</option>
+      </select>
+
+      <label for="chartType">Chart Type (bar, pie, line, doughnut, radar, polarArea):</label>
+      <input type="text" id="chartType" placeholder="Type chart type here (default: bar)" />
+
+      <button onclick="calculateEmission()">Calculate Emission</button>
+
+      <div id="result"></div>
+    </div>
+
+    <div id="chartContainer">
+      <canvas id="emissionChart" width="600" height="400"></canvas>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Eco Plus. Created with 💚 for sustainability.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    let chart;
+    const STORAGE_KEY = 'carbonHistory';
+
+    function calculateEmission() {
+      const transportFactor = parseFloat(document.getElementById('transportMode').value) || 0;
+      const distance = parseFloat(document.getElementById('distance').value) || 0;
+      const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+      const heating = parseFloat(document.getElementById('heating').value) || 0;
+      const waste = parseFloat(document.getElementById('waste').value) || 0;
+      const diet = parseFloat(document.getElementById('diet').value);
+      const recyclingReduction = parseFloat(document.getElementById('recycling').value) || 0;
+      const inputChartType = document.getElementById('chartType').value.trim().toLowerCase();
+
+      if (distance < 0 || electricity < 0 || heating < 0 || waste < 0) {
+        alert("Please enter non-negative values");
+        return;
+      }
+
+      const allowedChartTypes = ['bar', 'pie', 'line', 'doughnut', 'radar', 'polararea'];
+      const chartType = allowedChartTypes.includes(inputChartType) ? inputChartType : 'bar';
+
+      const electricityFactor = 0.9;
+      const heatingFactor = 0.8;
+      const wasteFactor = 1.5;
+
+      const transportEmission = +(transportFactor * distance).toFixed(2);
+      const electricityEmission = +(electricity * electricityFactor).toFixed(2);
+      const heatingEmission = +(heating * heatingFactor).toFixed(2);
+      const wasteEmission = +(waste * wasteFactor).toFixed(2);
+      const dietEmission = diet;
+
+      let totalEmission = transportEmission + electricityEmission + heatingEmission + wasteEmission + dietEmission;
+      totalEmission = +(totalEmission * (1 - recyclingReduction)).toFixed(2);
+
+      document.getElementById('result').innerHTML = `
+        <strong>Total Emissions after recycling adjustment:</strong> ${totalEmission} kg CO₂
+        <br><small>Showing <em>${chartType}</em> chart.</small>
+      `;
+
+      const record = {
+        date: new Date().toISOString(),
+        totalEmission: totalEmission,
+        details: {
+          Transport: transportEmission,
+          Electricity: electricityEmission,
+          Heating: heatingEmission,
+          Waste: wasteEmission,
+          Diet: dietEmission
+        }
+      };
+
+      let existingHistory = localStorage.getItem(STORAGE_KEY);
+      let historyArray = existingHistory ? JSON.parse(existingHistory) : [];
+      historyArray.push(record);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(historyArray));
+
+      const ctx = document.getElementById('emissionChart').getContext('2d');
+
+      if (chart) chart.destroy();
+
+      const data = {
+        labels: ['Transport', 'Electricity', 'Heating/Cooling', 'Waste', 'Diet'],
+        datasets: [{
+          label: 'Carbon Emissions (kg CO₂)',
+          data: [transportEmission, electricityEmission, heatingEmission, wasteEmission, dietEmission],
+          backgroundColor: ['#66bb6a', '#42a5f5', '#fbc02d', '#8d6e63', '#ff7043'],
+          borderColor: ['#388e3c', '#1976d2', '#f9a825', '#5d4037', '#d84315'],
+          borderWidth: 1,
+          fill: chartType === 'line' ? false : true,
+          tension: 0.3
+        }]
+      };
+
+      const options = {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          title: {
+            display: true,
+            text: 'Category-wise Carbon Emission Breakdown'
+          }
+        }
+      };
+
+      chart = new Chart(ctx, {
+        type: chartType,
+        data: data,
+        options: options
+      });
+    }
+  </script>
+
+</body>
+</html>

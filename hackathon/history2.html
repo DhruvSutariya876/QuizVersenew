@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carbon Emission Tracker - History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66bb6a, #42a5f5);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #a5d6a7;
+    }
+
+    .header-right a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .header-right a:hover {
+      color: #66bb6a;
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.35);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    th {
+      background-color: rgba(0,0,0,0.2);
+    }
+
+    tr:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .status-up {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+
+    .status-down {
+      color: #4cd137;
+      font-weight: bold;
+    }
+
+    .status-same {
+      color: #fbc531;
+      font-weight: bold;
+    }
+
+    .btn-back {
+      background-color: #1b5e20;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(27, 94, 32, 0.6);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .btn-back:hover {
+      background-color: #27642a;
+      box-shadow: 0 8px 20px rgba(27, 94, 32, 0.8);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px;
+      color: #c8e6c9;
+      width: 100%;
+      font-size: 0.9rem;
+      text-align: center;
+      user-select: none;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      th, td {
+        padding: 8px 10px;
+        font-size: 1rem;
+      }
+
+      .btn-back {
+        font-size: 1rem;
+        padding: 12px 30px;
+      }
+
+      .header-left {
+        font-size: 1.2rem;
+      }
+
+      .header-right a {
+        margin-left: 10px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">Eco Plus</div>
+    <div class="header-right">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="history.html">History</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <!-- MAIN SECTION -->
+  <div class="container">
+    <h1>Your Emission History</h1>
+    <table id="historyTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Total Emissions (kg CO₂)</th>
+          <th>Status</th>
+          <th>Recommendation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- History rows inserted here -->
+      </tbody>
+    </table>
+    <a href="landing.html" class="btn-back">Back to Home</a>
+    <a href="hackathon.html" class="btn-back">Go to Calculator</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Carbon Emission Tracker. Created with 💚 for sustainability.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Example data (can be replaced by localStorage data)
+    let history = JSON.parse(localStorage.getItem('carbonHistory')) || [
+      { date: "2025-07-01", totalEmission: 12.4 },
+      { date: "2025-07-02", totalEmission: 14.1 },
+      { date: "2025-07-03", totalEmission: 13.0 },
+      { date: "2025-07-04", totalEmission: 13.0 },
+      { date: "2025-07-05", totalEmission: 11.7 }
+    ];
+
+    function getStatus(current, previous) {
+      if (previous === null) return { symbol: "—", cls: "status-same", rec: "No previous data" };
+      if (current > previous) return { symbol: "⬆️", cls: "status-up", rec: "Try to reduce usage or waste" };
+      if (current < previous) return { symbol: "⬇️", cls: "status-down", rec: "Great! Keep it up!" };
+      return { symbol: "➡️", cls: "status-same", rec: "Maintain your current habits" };
+    }
+
+    function renderHistory() {
+      const tbody = document.querySelector("#historyTable tbody");
+      tbody.innerHTML = "";
+
+      for (let i = 0; i < history.length; i++) {
+        const today = history[i];
+        const yesterday = i > 0 ? history[i - 1].totalEmission : null;
+        const status = getStatus(today.totalEmission, yesterday);
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${today.date}</td>
+          <td>${today.totalEmission.toFixed(2)}</td>
+          <td class="${status.cls}">${status.symbol}</td>
+          <td>${status.rec}</td>
+        `;
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    renderHistory();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Carbon Emission Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66bb6a, #42a5f5);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === HEADER === */
+    header {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #a5d6a7;
+    }
+    .header-right a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .header-right a:hover {
+      color: #66bb6a;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      overflow: hidden;
+      max-width: 900px;
+      width: 100%;
+      margin: 40px auto;
+    }
+
+    .logo-side {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      color: white;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+
+    .logo-side::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1;
+    }
+
+    .logo-side h1 {
+      position: relative;
+      font-size: 2rem;
+      color: #a5d6a7;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .form-side {
+      flex: 1;
+      padding: 40px 30px;
+    }
+
+    .form-side h2 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: #e0f2f1;
+    }
+
+    .form-side label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .form-side input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .form-side button {
+      width: 100%;
+      padding: 14px;
+      background-color: #1b5e20;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-side button:hover {
+      background-color: #2e7d32;
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .links a {
+      color: #81d4fa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* === FOOTER === */
+    footer {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px;
+      color: #c8e6c9;
+      width: 100%;
+      font-size: 0.9rem;
+      text-align: center;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        margin: 20px;
+      }
+
+      .logo-side, .form-side {
+        flex: unset;
+        width: 100%;
+      }
+
+      .logo-side {
+        padding: 30px;
+        min-height: 250px;
+      }
+
+      .form-side {
+        padding: 30px 20px;
+      }
+
+      .header-right a {
+        margin-left: 10px;
+      }
+
+      .header-left {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">Eco Plus</div>
+    <div class="header-right">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="history.html">History</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <!-- Login Container -->
+  <div class="container">
+    <!-- Left Logo Side -->
+    <div class="logo-side" id="logoSide">
+      <h1>Eco PLus</h1>
+    </div>
+
+    <!-- Right Login Form -->
+    <div class="form-side">
+      <h2>Login</h2>
+      <form action="dashboard.html" method="post">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required />
+
+        <button type="submit">Log In</button>
+      </form>
+
+      <div class="links">
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        <p><a href="#">Forgot Password?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Carbon Emission Tracker. Created with 💚 for sustainability.
+  </footer>
+
+  <script>
+    const images = [
+      "solar panels.jpg",
+      "air pollution.jpg",
+      "planting tree.jpg"
+    ];
+
+    let index = 0;
+    const logoSide = document.getElementById("logoSide");
+
+    function rotateImage() {
+      logoSide.style.backgroundImage = `url('${images[index]}')`;
+      index = (index + 1) % images.length;
+    }
+
+    rotateImage(); // show first image
+    setInterval(rotateImage, 10000); // rotate every 10s
+  </script>
+
+</body>
+</html>

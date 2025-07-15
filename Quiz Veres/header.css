@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #00b39e;
+   align-items: center;
+}
+
+#image-header{
+display: flex;
+gap: 10px;
+}
+.header a:hover{
+    color:floralwhite;
+}
+
+.header p{
+    padding-left: 7px;
+}
+
+.header a{
+    color: bisque;
+    padding: 7px;
+}

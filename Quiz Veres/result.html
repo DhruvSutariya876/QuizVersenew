@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizVerse - Quiz Results</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #8d8ac2, #3b82f6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px 25px;
+      width: 90%;
+      margin: 30px 0;
+      max-width: 450px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h1, h2 {
+      color: #f0f8ff;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    h3 {
+      color: #e0e0e0;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    p, li {
+      font-size: 16px;
+      color: aliceblue;
+      margin: 6px 0;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #e5e7eb;
+      margin: 20px 0;
+    }
+
+    ol {
+      text-align: left;
+      margin-left: 20px;
+      padding-left: 10px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #b91c1c;
+      color: white;
+      padding: 10px 20px;
+      margin: 8px 0;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(2, 28, 53, 0.3);
+      background-color: #7f1d1d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Results</h1>
+    <h2>Congratulations, Dhruv!</h2>
+
+    <p><strong>Quiz:</strong> General Knowledge</p>
+    <p><strong>Date:</strong> July 5, 2025</p>
+
+    <p><strong>Score:</strong> 8 / 10</p>
+    <p><strong>Percentage:</strong> 80%</p>
+    <p><strong>Status:</strong> Pass</p>
+
+    <hr>
+
+    <h3>Answer Summary:</h3>
+    <ol>
+      <li>Q1: Correct</li>
+      <li>Q2: Incorrect</li>
+      <li>Q3: Correct</li>
+      <li>Q4: Correct</li>
+      <li>Q5: Correct</li>
+      <li>Q6: Incorrect</li>
+      <li>Q7: Correct</li>
+      <li>Q8: Correct</li>
+      <li>Q9: Correct</li>
+      <li>Q10: Incorrect</li>
+    </ol>
+
+    <hr>
+
+    <div class="links">
+      <a href="quiz-review.html" class="btn">🔍 Review Answers</a>
+      <a href="dashboard.html" class="btn">🏠 Dashboard</a>
+      <a href="quiz-selection.html" class="btn">⏳ Try Another</a>
+    </div>
+  </div>
+</body>
+</html>

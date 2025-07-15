@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - Carbon Emission Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a5d6a7, #81d4fa);
+      margin: 0;
+      padding: 0;
+      color: #1b5e20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #27642a;
+    }
+
+    .nav-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2e7d32;
+      font-weight: bold;
+      border: 2px solid #2e7d32;
+      padding: 6px 15px;
+      border-radius: 8px;
+      margin: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-block;
+    }
+
+    .nav-links a:hover {
+      background-color: #2e7d32;
+      color: white;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <form id="contactForm" onsubmit="submitForm(event)">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required placeholder="Your full name" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required placeholder="your@email.com" />
+
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" required placeholder="Subject of your message" />
+
+      <label for="message">Message:</label>
+      <textarea id="message" required placeholder="Type your message here..."></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="nav-links">
+      <a href="landing.html">Home</a>
+      <a href="carbon-calculator.html">Calculator</a>
+      <a href="history2.html">History</a>
+    </div>
+  </div>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !subject || !message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      // Simulate successful message send
+      alert("Thank you! Your message has been received.");
+      document.getElementById("contactForm").reset();
+    }
+  </script>
+
+</body>
+</html>

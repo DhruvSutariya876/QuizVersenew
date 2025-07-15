@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuizVerse Admin</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-weight: normal;
+      font-size: 1.5rem;
+    }
+    .sidebar button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 12px 0;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: left;
+      border-left: 4px solid transparent;
+      transition: background-color 0.3s, border-left 0.3s;
+    }
+    .sidebar button.active,
+    .sidebar button:hover {
+      background-color: #4caf50;
+      border-left: 4px solid #2e7d32;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Buttons */
+    .btn {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #388e3c;
+    }
+    .btn-danger {
+      background-color: #e53935;
+    }
+    .btn-danger:hover {
+      background-color: #ab000d;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="sidebar">
+    <h2>QuizVerse Admin</h2>
+    <button id="tab-results" class="active">Quiz Results</button>
+    <button id="tab-quizzes">Manage Quizzes</button>
+  </nav>
+
+  <main class="main">
+    <!-- Quiz Results Section -->
+    <section id="results-section">
+      <h1>Quiz Results</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="results-table-body">
+          <tr><td>Alice</td><td>85%</td><td>2025-07-12</td></tr>
+          <tr><td>Bob</td><td>90%</td><td>2025-07-11</td></tr>
+          <tr><td>Charlie</td><td>70%</td><td>2025-07-10</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Manage Quizzes Section -->
+    <section id="quizzes-section" style="display:none;">
+      <h1>Manage Quizzes</h1>
+      <button class="btn" id="add-quiz-btn">Add New Quiz</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Questions</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="quizzes-table-body">
+          <tr>
+            <td>General Knowledge</td>
+            <td>10</td>
+            <td><button class="btn btn-danger delete-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Math Quiz</td>
+            <td>15</td>
+            <td><button class="btn btn-danger delete-btn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Tab buttons
+    const resultsTabBtn = document.getElementById("tab-results");
+    const quizzesTabBtn = document.getElementById("tab-quizzes");
+    const resultsSection = document.getElementById("results-section");
+    const quizzesSection = document.getElementById("quizzes-section");
+
+    resultsTabBtn.addEventListener("click", () => {
+      resultsTabBtn.classList.add("active");
+      quizzesTabBtn.classList.remove("active");
+      resultsSection.style.display = "";
+      quizzesSection.style.display = "none";
+    });
+
+    quizzesTabBtn.addEventListener("click", () => {
+      quizzesTabBtn.classList.add("active");
+      resultsTabBtn.classList.remove("active");
+      quizzesSection.style.display = "";
+      resultsSection.style.display = "none";
+    });
+
+    // Manage quizzes
+    const quizzesTableBody = document.getElementById("quizzes-table-body");
+    const addQuizBtn = document.getElementById("add-quiz-btn");
+
+    addQuizBtn.addEventListener("click", () => {
+      const title = prompt("Enter new quiz title:");
+      if (!title) return alert("Quiz title cannot be empty!");
+
+      // Add new quiz with 0 questions for demo
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td>${title}</td>
+        <td>0</td>
+        <td><button class="btn btn-danger delete-btn">Delete</button></td>
+      `;
+      quizzesTableBody.appendChild(newRow);
+
+      // Add event listener to new delete button
+      newRow.querySelector(".delete-btn").addEventListener("click", () => {
+        if (confirm(`Delete quiz "${title}"?`)) {
+          newRow.remove();
+        }
+      });
+    });
+
+    // Add delete functionality to existing delete buttons
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const row = e.target.closest("tr");
+        const quizTitle = row.querySelector("td").textContent;
+        if (confirm(`Delete quiz "${quizTitle}"?`)) {
+          row.remove();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
