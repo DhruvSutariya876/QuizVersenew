@@ -10,7 +10,8 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(48, 45, 45, 0.6)),
         url('quiz1.avif') no-repeat center center / cover;
-      color: #e0f7fa;
+      background-attachment: fixed;
+        color: #e0f7fa;
     }
 
     .header {
@@ -88,14 +89,27 @@
     }
 
     h1, h3 {
+
       color: #ffffff;
+    }
+    h1{
+      font-weight:;
+text-shadow: 0 0 10px #050f0f, 0 0 20px #00ffff;
     }
 
     p, a {
       color: #e0f7fa;
       font-size: 1rem;
     }
+    .faq-container p{
+      display: none;
+      margin-left: 30px;
+      color: #ffffff;
+    }
 
+    .faq-container h3{
+      cursor: pointer;
+    }
     a:hover {
       color: #00e0ff;
       text-decoration: underline;
@@ -146,7 +160,7 @@
   <div class="faq-container">
     <h1>📖 FAQs - QuizVerse</h1>
 
-    <h3>1. What is QuizVerse?</h3>
+    <h3> 1. What is QuizVerse?</h3>
     <p>QuizVerse is a platform to play quizzes, test your knowledge, and track your progress in a fun way.</p>
 
     <h3>2. How do I sign up?</h3>
@@ -182,6 +196,19 @@
       <a href="contact.html">Contact</a>
     </div>
   </footer>
+  <script>
+      const question = document.querySelectorAll(".faq-container h3");
+      question.forEach((q)=>{
+        q.addEventListener('click',()=>{
+          const ans = q.nextElementSibling;
+          if(ans.style.display==='block'){
+            ans.style.display='none';
+          }else{
+            ans.style.display='block';
+          }
+        });
+      });
+  </script>
 
 </body>
 </html>
