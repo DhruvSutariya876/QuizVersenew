@@ -29,9 +29,10 @@ form.addEventListener('submit',function(e){
     }
 
      if(password.value!==confirmpassword.value){
-        cnfpassErrorError.textContent='password doesnt match';
+        cnfpassError.textContent='password doesnt match';
     }
 
     console.log(fullName.value);
+
+location.reload();
 });
-console.log(fullName.value);
