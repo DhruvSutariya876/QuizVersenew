@@ -10,6 +10,11 @@ form.addEventListener('submit',function(e){
 emailError.textContent=" ";
 passwordError.textContent=" ";
 
-if(email.value.trim)
+if(email.value.trim()===""){
+    emailError.textContent="Enter Email";
+}
+if(password.value.trim()===""){
+    passwordError.textContent="Enter Password";
+}
 
 }); 

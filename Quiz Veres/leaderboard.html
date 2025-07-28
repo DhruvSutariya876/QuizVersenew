@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizVerse Leaderboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+
+    .leaderboard {
+      background: #ffffff22;
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .entry {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 20px;
+      margin: 8px 0;
+      background: #ffffff11;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .entry:hover {
+      background: #ffffff33;
+    }
+
+    .rank {
+      font-weight: bold;
+      width: 30px;
+      text-align: left;
+    }
+
+    .name {
+      flex: 1;
+      text-align: left;
+    }
+
+    .score {
+      font-weight: bold;
+      width: 60px;
+      text-align: right;
+    }
+
+    .back-button {
+      margin-top: 20px;
+    }
+
+    .back-button a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ffffff33;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back-button a:hover {
+      background-color: #ffffff55;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏆 QuizVerse Leaderboard</h1>
+    <div class="leaderboard">
+      <div class="entry">
+        <span class="rank">1</span>
+        <span class="name">Ashish</span>
+        <span class="score">980</span>
+      </div>
+      <div class="entry">
+        <span class="rank">2</span>
+        <span class="name">Manish</span>
+        <span class="score">900</span>
+      </div>
+      <div class="entry">
+        <span class="rank">3</span>
+        <span class="name">Harsh</span>
+        <span class="score">870</span>
+      </div>
+      <div class="entry">
+        <span class="rank">4</span>
+        <span class="name">Dhruv</span>
+        <span class="score">830</span>
+      </div>
+      <div class="entry">
+        <span class="rank">5</span>
+        <span class="name">Mayank</span>
+        <span class="score">790</span>
+      </div>
+    </div>
+
+    <div class="back-button">
+      <a href="home.html">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
