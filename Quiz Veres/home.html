@@ -33,8 +33,8 @@ background: linear-gradient(to right, #4f46e5, #3b82f6); /* Indigo → Blue */
     }
 
     #image-header img {
-      width: 35px;
-      height: 35px;
+      width: 75px;
+      height: 75px;
     }
 
     .header p {
@@ -128,6 +128,7 @@ transition: all 0.3s ease;
 background: linear-gradient(to right, #4f46e5, #3b82f6);
 color: white;
 color: #222;
+padding: 15px;
     justify-content: center;
 
 }
@@ -146,9 +147,34 @@ color: #222;
 
     .click:hover{
         background: linear-gradient(to left, #4facfe, #00f2fe);
- box-shadow: 0 0 12px #00f2fe;
-  cursor: pointer;
+        box-shadow: 0 0 12px #00f2fe;
+        cursor: pointer;
     }
+
+    .textslide {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 40px auto;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+#popup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  background-color: white;
+  color: black;
+   border: 2px solid #3b82f6;
+  border-radius: 10px;
+}
+
   </style>
 </head>
 
@@ -173,7 +199,7 @@ color: #222;
   <div class="homebox">
     <div class="home">
     <h1>🧠 Welcome to QuizVerse – Test Your Knowledge Anytime, Anywhere!</h1>
-    <h2>Welcome to QuizVerse!</h2>
+    <h2 id="textslide"></h2>
     <p>Ready to challenge your brain and have fun? QuizVerse offers free quizzes on topics like science, history,
       sports, movies, and more!</p>
     <h4>Why QuizVerse?</h4>
@@ -187,6 +213,17 @@ color: #222;
 
     <h3>Get Started</h3>
     <p>👉 Select a quiz category and start playing. Login to begin — just jump in and test your knowledge!<a href="login.html"><button class="click">Compete</button></a></p>
+    <button class="click" onclick="">
+  View Quiz Instructions
+</button>
+<div id="popup">
+  <h3>Quiz Instructions</h3>
+  <ul>
+    <li>Each quiz contains 10 questions.</li>
+    <li>1 point for every correct answer.</li>
+    <li>No negative marking.</li>
+  </ul>
+</div>
 
 
   </div>
@@ -199,6 +236,32 @@ color: #222;
       <a href="contact.html">Contact</a>
   </div>
 </footer>
+<script>
+  const slideTexts = [
+    "✨ Challenge yourself every day!",
+    "🎓 Learn while playing with QuizVerse!",
+    "🏆 Compete and climb the leaderboard!",
+    "📊 Track your progress and improve!"
+  ];
+
+  let curSlide=0;
+
+  const slideElement = document.getElementById('textslide');
+
+  setInterval(()=>{
+    if(curSlide>=(slideTexts.length-1)){
+      curSlide=0;
+    }
+    curSlide = (curSlide+1);
+    slideElement.textContent=slideTexts[curSlide];
+  },3000);
+
+  let pop = document.getElementById('popup');
+  pop.addEventListener("click",()=>{
+    pop.style.display='block';
+  });
+
+</script>
 </body>
 
 </html>
