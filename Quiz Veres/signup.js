@@ -3,36 +3,49 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const confirmpassword = document.getElementById('confirm');
 
-const fullNameError=document.getElementById('fullname-error');
-const emailError=document.getElementById('email-error');
-const passwordError=document.getElementById('pass-error');
-const cnfpassError=document.getElementById('cnfpass-error');
+const fullNameError = document.getElementById('fullname-error');
+const emailError = document.getElementById('email-error');
+const passwordError = document.getElementById('pass-error');
+const cnfpassError = document.getElementById('cnfpass-error');
 
-const form=document.getElementById('signup-form');
-form.addEventListener('submit',function(e){
-    e.preventDefault();
-     fullNameError.textContent = '';
-    emailError.textContent = '';
-    passwordError.textContent = '';
-    cnfpassError.textContent = '';
+const form = document.getElementById('signup-form');
 
-    if(fullName.value.trim()===" "){
-        fullNameError.textContent='Enter Full Name';
-    }
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
 
-     if(email.value.trim()===" "){
-        emailError.textContent='Enter Email';
-    }
+  // Reset previous errors
+  fullNameError.textContent = '';
+  emailError.textContent = '';
+  passwordError.textContent = '';
+  cnfpassError.textContent = '';
 
-     if(password.value.trim().length<6){
-        passwordError.textContent='Enter password greater than 6';
-    }
+  let valid = true;
 
-     if(password.value!==confirmpassword.value){
-        cnfpassError.textContent='password doesnt match';
-    }
+  if (fullName.value.trim() === "") {
+    fullNameError.textContent = 'Enter Full Name';
+    valid = false;
+  }
 
-    console.log(fullName.value);
+  if (email.value.trim() === "") {
+    emailError.textContent = 'Enter Email';
+    valid = false;
+  }
 
-location.reload();
+  if (password.value.trim().length < 6) {
+    passwordError.textContent = 'Enter password with at least 6 characters';
+    valid = false;
+  }
+
+  if (password.value !== confirmpassword.value) {
+    cnfpassError.textContent = 'Passwords do not match';
+    valid = false;
+  }
+
+  if (valid) {
+    // Simulate successful signup
+    console.log("Full Name:", fullName.value);
+    alert("Signup Successful!");
+    form.reset(); // or redirect to login page
+    // window.location.href = "login.html"; // optional
+  }
 });
