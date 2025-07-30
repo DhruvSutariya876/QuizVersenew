@@ -169,10 +169,11 @@ padding: 15px;
   top: 50%;
   left: 50%;
   padding: 20px;
-  background-color: white;
-  color: black;
+  background-color: rgb(8, 8, 8);
+  color: rgb(253, 250, 250);
    border: 2px solid #3b82f6;
   border-radius: 10px;
+   transform: translate(-50%, -50%);
 }
 
   </style>
@@ -213,7 +214,7 @@ padding: 15px;
 
     <h3>Get Started</h3>
     <p>👉 Select a quiz category and start playing. Login to begin — just jump in and test your knowledge!<a href="login.html"><button class="click">Compete</button></a></p>
-    <button class="click" onclick="">
+    <button id ="popbtn"class="click" onclick="">
   View Quiz Instructions
 </button>
 <div id="popup">
@@ -224,7 +225,6 @@ padding: 15px;
     <li>No negative marking.</li>
   </ul>
 </div>
-
 
   </div>
   </div>
@@ -256,9 +256,14 @@ padding: 15px;
     slideElement.textContent=slideTexts[curSlide];
   },3000);
 
-  let pop = document.getElementById('popup');
+  let pop = document.getElementById('popbtn');
+  let popup = document.getElementById('popup')
   pop.addEventListener("click",()=>{
-    pop.style.display='block';
+   if(popup.style.display==="none"){
+    popup.style.display='block';
+   }else{
+     popup.style.display='none';
+   }
   });
 
 </script>
