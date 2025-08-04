@@ -18,7 +18,7 @@ form.addEventListener('submit', function (e) {
   }
 
   if (password.value.trim() === "") {
-    passwordError.textContent = "Enter Password";
+    passwordError.textContent = "Enter Password!";
     valid = false;
   }
 

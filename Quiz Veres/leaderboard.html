@@ -3,91 +3,199 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QuizVerse Leaderboard</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #4b6cb7, #182848);
-      color: #fff;
+ <title>QuizVerse Leaderboard</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=80');
+  background-size: 100%;
+  
+  animation: moveBG 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #e0f7fa;
+}
+
+@keyframes moveBG {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0px 1000px; 
+  }
+}
+
+.container {
+  text-align: center;
+  width: 95%;
+  max-width: 600px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.6rem;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
+
+.leaderboard {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(140000px);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.entry:hover {
+  background: rgba(0, 242, 254, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+}
+
+.rank {
+  font-weight: bold;
+  width: 30px;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.name {
+  flex: 1;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #f8fafc;
+}
+
+.score {
+  font-weight: bold;
+  width: 60px;
+  text-align: right;
+  font-size: 1.1rem;
+  color: #67e8f9;
+}
+
+.entry:nth-child(1) .rank {
+  color: gold;
+  text-shadow: 0 0 8px gold;
+}
+.entry:nth-child(2) .rank {
+  color: silver;
+  text-shadow: 0 0 6px silver;
+}
+.entry:nth-child(3) .rank {
+  color: #cd7f32;
+  text-shadow: 0 0 6px #cd7f32;
+}
+
+.back-button {
+  margin-top: 30px;
+}
+
+.back-button a {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: #000;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+  transition: all 0.3s ease;
+}
+
+.back-button a:hover {
+  background: linear-gradient(to left, #4facfe, #00f2fe);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+  transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+  .entry {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .rank,
+  .name,
+  .score {
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .back-button a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+    .footer {
       display: flex;
-      justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(to right, #4f46e5, #3b82f6);
+      color: white;
+      justify-content: center;
+      padding: 15px;
+      margin-top: 25px;
+      margin-bottom: 0;
     }
 
-    .container {
-      text-align: center;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    h1 {
-      margin-bottom: 30px;
-      font-size: 2.5rem;
-    }
-
-    .leaderboard {
-      background: #ffffff22;
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .entry {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 20px;
-      margin: 8px 0;
-      background: #ffffff11;
-      border-radius: 10px;
-      transition: background 0.3s ease;
-    }
-
-    .entry:hover {
-      background: #ffffff33;
-    }
-
-    .rank {
-      font-weight: bold;
-      width: 30px;
-      text-align: left;
-    }
-
-    .name {
-      flex: 1;
-      text-align: left;
-    }
-
-    .score {
-      font-weight: bold;
-      width: 60px;
-      text-align: right;
-    }
-
-    .back-button {
-      margin-top: 20px;
-    }
-
-    .back-button a {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #ffffff33;
-      color: #fff;
+    .footer a {
+      color: #e0f7fa;
       text-decoration: none;
-      border-radius: 8px;
+      margin: 0 10px;
       font-weight: bold;
-      transition: background 0.3s ease;
     }
 
-    .back-button a:hover {
-      background-color: #ffffff55;
+    .footer a:hover {
+      text-decoration: underline;
+      color: #51d0d6;
     }
-  </style>
+
+</style>
 </head>
 <body>
+  
   <div class="container">
     <h1>🏆 QuizVerse Leaderboard</h1>
     <div class="leaderboard">
@@ -122,5 +230,13 @@
       <a href="home.html">← Back to Home</a>
     </div>
   </div>
+    <footer class="footer">
+    <p>© 2025 QuizVerse. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>

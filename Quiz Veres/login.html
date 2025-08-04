@@ -34,8 +34,8 @@
     }
 
     #image-header img {
-      width: 35px;
-      height: 35px;
+     width: 75px;
+      height: 75px;
     }
 
     .header p {
@@ -172,6 +172,7 @@ a:hover{
       text-decoration: underline;
       color: #51d0d6;
     }
+    
   </style>
 </head>
 
@@ -202,12 +203,12 @@ a:hover{
         <input type="email" id="email" class="input-field" required />
         <span class="email-error"></span>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="input-field" required />
-        <span class="pass-error"></span>
+        <input type="password" id="password" name="password" class="input-field">
+        <span class="pass-error"style="color: red;">Enter Password!</span>
 
         <p>Don't have an account?<a href="signup.html"> Sign up</a></p>
 
-        <button class="lgbt" type="submit" value="Login">Login</button>
+        <input class="lgbt" type="submit" value="Login">
       </form>
     </div>
   </div>

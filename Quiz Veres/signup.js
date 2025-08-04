@@ -13,7 +13,6 @@ const form = document.getElementById('signup-form');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Reset previous errors
   fullNameError.textContent = '';
   emailError.textContent = '';
   passwordError.textContent = '';
@@ -42,10 +41,8 @@ form.addEventListener('submit', function(e) {
   }
 
   if (valid) {
-    // Simulate successful signup
     console.log("Full Name:", fullName.value);
     alert("Signup Successful!");
-    form.reset(); // or redirect to login page
-    // window.location.href = "login.html"; // optional
-  }
+    form.reset(); 
+}
 });

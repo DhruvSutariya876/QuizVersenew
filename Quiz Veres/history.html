@@ -11,10 +11,11 @@
   h1{
     text-align: center;
     color:white;
+    font-size: 2rem;
   }
 
   p{
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #e6f7ff;
   }
 
@@ -45,6 +46,7 @@
   td {
     padding: 10px;
     font-weight: 1rem;
+    font-size: 1.5rem;
   }
   th {
     background: linear-gradient(to right, #4f46e5, #3b82f6);
@@ -56,12 +58,45 @@
     color: #000;
   }
   tr:nth-child(even) {
-    background-color: #f0f8ff;
+    background-color: #ffffff;
   }
 
   tr:hover {
     background-color: #595b5c;
   }
+  td:hover{
+    color: #ffffff;
+  }
+  .footer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+background: linear-gradient(to right, #4f46e5, #3b82f6);
+color: white;
+color: #222;
+padding: 15px;
+margin-top: auto;
+    justify-content: center;
+
+}
+
+.footer a{
+  color: #e0f7fa;
+  text-decoration: none;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+  color: #51d0d6;
+}
+
+    .click:hover{
+        background: linear-gradient(to left, #4facfe, #00f2fe);
+        box-shadow: 0 0 12px #00f2fe;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -71,7 +106,7 @@
 
   <hr>
 
-  <table border="1" cellpadding="8" cellspacing="0">
+  <table border="1" cellpadding="10" cellspacing="0">
     
       <tr>
         <th>#</th>
@@ -113,5 +148,13 @@
 
       <tr>
   </table>
+  <footer class="footer">
+    <div class="writing"><p>© 2025 QuizVerse. All rights reserved.</p></div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="contact.html">Contact</a>
+  </div>
+</footer>
 </body>
 </html>
