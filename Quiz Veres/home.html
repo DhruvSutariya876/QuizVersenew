@@ -211,6 +211,25 @@ padding: 15px;
       <li>📝 Submit your own quizzes</li>
       <li>📚 Learn while playing!</li>
     </ul>
+    <body>
+  <h1>Welcome to Quiz Verse</h1>
+
+  <section id="events-section">
+    <h2>Upcoming Events</h2>
+    <div id="event-list">
+      
+    </div>
+  </section>
+
+  <section id="students-section">
+    <h2>Student Profiles</h2>
+    <div id="student-list"></div>
+  </section>
+
+  <script src="js/events.js"></script>
+  <script src="js/students.js"></script>
+</body>
+
 
     <h3>Get Started</h3>
     <p>👉 Select a quiz category and start playing. Login to begin — just jump in and test your knowledge!<a href="login.html"><button class="click">Compete</button></a></p>
@@ -236,37 +255,7 @@ padding: 15px;
       <a href="contact.html">Contact</a>
   </div>
 </footer>
-<script>
-  const slideTexts = [
-    "✨ Challenge yourself every day!",
-    "🎓 Learn while playing with QuizVerse!",
-    "🏆 Compete and climb the leaderboard!",
-    "📊 Track your progress and improve!"
-  ];
-
-  let curSlide=0;
-
-  const slideElement = document.getElementById('textslide');
-
-  setInterval(()=>{
-    if(curSlide>=(slideTexts.length-1)){
-      curSlide=0;
-    }
-    curSlide = (curSlide+1);
-    slideElement.textContent=slideTexts[curSlide];
-  },3000);
-
-  let pop = document.getElementById('popbtn');
-  let popup = document.getElementById('popup')
-  pop.addEventListener("click",()=>{
-   if(popup.style.display==="none"){
-    popup.style.display='block';
-   }else{
-     popup.style.display='none';
-   }
-  });
-
-</script>
+<script src="home.js"></script>
 </body>
 
 </html>

